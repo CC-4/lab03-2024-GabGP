@@ -96,11 +96,13 @@ EXP = "^"
 LPAREN = "("
 RPAREN = ")"
 UNARY = "~"
-NUMBER = "2"
+NUMBER = {digit}+({point}?{digit}*)?({exp}{sign}?{digit}+)?
 SEMI = ";" // Definan aqui sus Tokens/ER por ejemplo: "el token SEMI"
 WHITE = (" "|\t|\n)
 
 %%
+
+<YYINITIAL>{NUMBER} { return new Token(Token.NUMBER, yytext()); }
 
 <YYINITIAL>{LPAREN}   { return new Token(Token.LPAREN);   }
 
@@ -119,8 +121,6 @@ WHITE = (" "|\t|\n)
 <YYINITIAL>{MINUS}   { return new Token(Token.MINUS);   }
 
 <YYINITIAL>{UNARY}   { return new Token(Token.MINUS);   }
-
-<YYINITIAL>{NUMBER} { return new Token(Token.NUMBER, yytext()); }
 
 <YYINITIAL>{SEMI}   { return new Token(Token.SEMI);   }
 
