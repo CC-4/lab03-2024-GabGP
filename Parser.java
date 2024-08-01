@@ -134,8 +134,74 @@ public class Parser {
     }
 
     private boolean E() {
+        int save = next;
+        this.next = save;
+
+        next = save;
+        if (E1()) { return true; }
+
+        next = save;
+        if (E2()) { return true; }
+
+        next = save;
+        if (E3()) { return true; }
+
+        next = save;
+        if (E4()) { return true; }
+
+        next = save;
+        if (E5()) { return true; }
+
+        next = save;
+        if (E6()) { return true; }
+
+        next = save;
+        if (E7()) { return true; }
+
+        next = save;
+        if (E8()) { return true; }
+
+        next = save;
+        if (N()) { return true; }
+
         return false;
     }
 
+    //N + E
+    private boolean E1() {
+        return N() && term(Token.PLUS) && E();
+    }
+    //N - E
+    private boolean E2() {
+        return N() && term(Token.MINUS) && E();
+    }
+    //N * E
+    private boolean E3() {
+        return N() && term(Token.MULT) && E();
+    }
+    //N / E
+    private boolean E4() {
+        return N() && term(Token.DIV) && E();
+    }
+    //N % E
+    private boolean E5() {
+        return N() && term(Token.MOD) && E();
+    }
+    //N ^ E
+    private boolean E6() {
+        return N() && term(Token.EXP) && E();
+    }
+    //- N
+    private boolean E7() {
+        return term(Token.UNARY) && N();
+    }
+    //(N)
+    private boolean E8() {
+        return term(Token.LPAREN) && N() && term(Token.LPAREN);
+    }
+    
+    private boolean N() {
+        return term(Token.NUMBER);
+    }
     /* TODO: sus otras funciones aqui */
 }
