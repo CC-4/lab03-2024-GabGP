@@ -82,10 +82,22 @@ import java.io.IOException;
 %function nextToken
 %type Token
 
+signo   = [+-]
+digitos = [0-9]
+punto = .
+exponente = [eE]
+
+PLUS = "+"
+MINUS = "-"
+//NUMBER = {digitos}+{{punto}?{digitos}*}?((exponente)(signo)?(digitos)+)?
 SEMI = ";" // Definan aqui sus Tokens/ER por ejemplo: "el token SEMI"
 WHITE = (" "|\t|\n)
 
 %%
+
+<YYINITIAL>{PLUS}   { return new Token(Token.PLUS);   }
+
+<YYINITIAL>{MINUS}   { return new Token(Token.MINUS);   }
 
 <YYINITIAL>{SEMI}   { return new Token(Token.SEMI);   }
 
