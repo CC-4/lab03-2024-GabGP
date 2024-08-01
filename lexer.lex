@@ -82,14 +82,21 @@ import java.io.IOException;
 %function nextToken
 %type Token
 
-signo   = [+-]
-digitos = [0-9]
-punto = .
-exponente = [eE]
+sign = [+-]
+digit = [0-9]
+point = "."
+exp = [eE]
 
 PLUS = "+"
 MINUS = "-"
-//NUMBER = {digitos}+{{punto}?{digitos}*}?((exponente)(signo)?(digitos)+)?
+MULT = "*"
+DIV = "/"
+MOD = "%"
+EXP = "^"
+LPAREN = "("
+RPAREN = ")"
+UNARY = "~"
+NUMBER = "2"
 SEMI = ";" // Definan aqui sus Tokens/ER por ejemplo: "el token SEMI"
 WHITE = (" "|\t|\n)
 
@@ -110,6 +117,10 @@ WHITE = (" "|\t|\n)
 <YYINITIAL>{PLUS}   { return new Token(Token.PLUS);   }
 
 <YYINITIAL>{MINUS}   { return new Token(Token.MINUS);   }
+
+<YYINITIAL>{UNARY}   { return new Token(Token.MINUS);   }
+
+<YYINITIAL>{NUMBER} { return new Token(Token.NUMBER, yytext()); }
 
 <YYINITIAL>{SEMI}   { return new Token(Token.SEMI);   }
 
