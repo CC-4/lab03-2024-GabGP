@@ -191,13 +191,13 @@ public class Parser {
     private boolean E6() {
         return N() && term(Token.EXP) && E();
     }
-    //- N
+    //- E
     private boolean E7() {
-        return term(Token.UNARY) && N();
+        return term(Token.UNARY) && E();
     }
-    //(N)
+    //(E)
     private boolean E8() {
-        return term(Token.LPAREN) && N() && term(Token.LPAREN);
+        return term(Token.LPAREN) && E() && term(Token.RPAREN);
     }
     
     private boolean N() {
