@@ -45,6 +45,10 @@ public class Parser {
     // Verifica que el id sea igual que el id del token al que apunta next
     // Si si avanza el puntero es decir lo consume.
     private boolean term(int id) {
+        /*To see better what the program is doing:
+        System.out.println("Position: " + this.next + " Token: " + this.tokens.get(this.next) + " Checking id: " + id 
+        + " Does it match? " + Boolean.toString(this.next < this.tokens.size() && this.tokens.get(this.next).equals(id)));    
+        */
         if(this.next < this.tokens.size() && this.tokens.get(this.next).equals(id)) {
             
             // Codigo para el Shunting Yard Algorithm
