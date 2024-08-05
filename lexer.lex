@@ -120,7 +120,7 @@ WHITE = (" "|\t|\n)
 
 <YYINITIAL>{MINUS}   { return new Token(Token.MINUS);   }
 
-<YYINITIAL>{UNARY}   { return new Token(Token.MINUS);   }
+<YYINITIAL>{UNARY}   { return new Token(Token.UNARY);   }
 
 <YYINITIAL>{SEMI}   { return new Token(Token.SEMI);   }
 
