@@ -33,7 +33,7 @@ public class Parser {
 
         // Shunting Yard Algorithm
         // Imprime el resultado de operar el input
-        // System.out.println("Resultado: " + this.operandos.peek());
+        System.out.println("Resultado: " + this.operandos.peek());
 
         // Verifica si terminamos de consumir el input
         if(this.next != this.tokens.size()) {
@@ -52,7 +52,7 @@ public class Parser {
         if(this.next < this.tokens.size() && this.tokens.get(this.next).equals(id)) {
             
             // Codigo para el Shunting Yard Algorithm
-            /*
+            
             if (id == Token.NUMBER) {
 				// Encontramos un numero
 				// Debemos guardarlo en el stack de operandos
@@ -71,7 +71,7 @@ public class Parser {
 				// Que pushOp haga el trabajo, no quiero hacerlo yo aqui
 				pushOp( this.tokens.get(this.next) );
 			}
-			*/
+			
 
             this.next++;
             return true;
@@ -88,8 +88,22 @@ public class Parser {
         switch(op.getId()) {
         	case Token.PLUS:
         		return 1;
+            case Token.MINUS:
+                return 1;
         	case Token.MULT:
         		return 2;
+            case Token.DIV:
+                return 2;
+            case Token.MOD:
+                return 2;
+            case Token.EXP:
+                return 3;
+            case Token.UNARY:
+                return 4;
+            case Token.LPAREN:
+                return 5;
+            case Token.RPAREN:
+                return 5;
         	default:
         		return -1;
         }
