@@ -33,7 +33,7 @@ public class Parser {
 
         // Shunting Yard Algorithm
         // Imprime el resultado de operar el input
-        System.out.println("Resultado: " + this.operandos.peek());
+        //System.out.println("Resultado: " + this.operandos.peek());
 
         // Verifica si terminamos de consumir el input
         if(this.next != this.tokens.size()) {
