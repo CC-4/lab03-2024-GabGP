@@ -122,12 +122,46 @@ public class Parser {
         	// print para debug, quitarlo al terminar
         	System.out.println("suma " + a + " + " + b);
         	this.operandos.push(a + b);
+        } else if(op.equals(Token.MINUS)) {
+            double a = this.operandos.pop();
+        	double b = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("minus " + a + " - " + b);
+        	this.operandos.push(a - b);
         } else if (op.equals(Token.MULT)) {
         	double a = this.operandos.pop();
         	double b = this.operandos.pop();
         	// print para debug, quitarlo al terminar
         	System.out.println("mult " + a + " * " + b);
         	this.operandos.push(a * b);
+        } else if (op.equals(Token.DIV)) {
+        	double a = this.operandos.pop();
+        	double b = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("div " + a + " / " + b);
+        	this.operandos.push(a / b);
+        } else if (op.equals(Token.MOD)) {
+        	double a = this.operandos.pop();
+        	double b = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("mod " + a + " % " + b);
+        	this.operandos.push(a % b);
+        } else if (op.equals(Token.EXP)) {
+        	double a = this.operandos.pop();
+        	double b = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("exp " + a + " ^ " + b);
+        	this.operandos.push(a ^ b);
+        } else if (op.equals(Token.UNARY)) {
+        	double a = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("unary " + " ~ " + a);
+        	this.operandos.push(~a);
+        } else if (op.equals(Token.LPAREN)) {
+        	double a = this.operandos.pop();
+        	// print para debug, quitarlo al terminar
+        	System.out.println("lparen " + "(" + a);
+        	this.operandos.push(a);
         }
     }
 
@@ -140,8 +174,15 @@ public class Parser {
 
     	// Si si hay operandos:
     		// Obtenemos la precedencia de op
+            int curr = pre(op);
         	// Obtenemos la precedencia de quien ya estaba en el stack
+            int inStack = pre( "peek" );
         	// Comparamos las precedencias y decidimos si hay que operar
+            while (curr <= inStack && true) {
+                popOp();
+            }
+
+            this.operadores.push(op);
         	// Es posible que necesitemos un ciclo aqui, una vez tengamos varios niveles de precedencia
         	// Al terminar operaciones pendientes, guardamos op en stack
 
